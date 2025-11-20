@@ -7,8 +7,8 @@
         android:id="@+id/txt_receive_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#E0E0E0"
-        android:textColor="#000000"
+        android:background="@drawable/bubble_received"
+        android:textColor="@color/on_surface"
         android:padding="10dp"
         android:textSize="16sp"
         android:text="Hi there" />

@@ -49,6 +49,7 @@ public class ChatActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(this, messageList);
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         chatRecyclerView.setAdapter(messageAdapter);
+        chatRecyclerView.setItemAnimator(new androidx.recyclerview.widget.DefaultItemAnimator());
 
         loadMessages();
 

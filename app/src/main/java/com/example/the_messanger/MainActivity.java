@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         userAdapter = new UserAdapter(this, userList);
         userRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userRecyclerView.setAdapter(userAdapter);
+        userRecyclerView.setItemAnimator(new androidx.recyclerview.widget.DefaultItemAnimator());
         noUsersText = findViewById(R.id.noUsersText);
 
         loadUsers();

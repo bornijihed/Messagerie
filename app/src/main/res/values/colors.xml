@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+<color name="black">#FF000000</color>
+<color name="white">#FFFFFFFF</color>
+
+    <!-- Dark Softer Theme Colors -->
+    <color name="primary">#FF673AB7</color> <!-- Softer Purple -->
+    <color name="primary_dark">#FF512DA8</color>
+    <color name="primary_light">#FF9575CD</color>
+    <color name="accent">#FF009688</color> <!-- Softer Teal Accent -->
+    <color name="background">#FF121212</color> <!-- Dark Background -->
+    <color name="surface">#FF1E1E1E</color> <!-- Slightly lighter surface -->
+    <color name="error">#FFCF6679</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="on_secondary">#FF000000</color>
+    <color name="on_background">#FFFFFFFF</color>
+    <color name="on_surface">#FFFFFFFF</color>
+    <color name="on_error">#FF000000</color>
 </resources>
