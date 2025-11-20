@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "916411291884",
+    "project_id": "mssngr-2c5a2",
+    "storage_bucket": "mssngr-2c5a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916411291884:android:b6ba3b7910c80b5e2f6dc9",
+        "android_client_info": {
+          "package_name": "com.example.the_messanger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvl--ie4LnppRhlK98SIugAYBiM2uCNFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

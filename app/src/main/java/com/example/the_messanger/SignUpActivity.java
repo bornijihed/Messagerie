@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,11 +20,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        try {
-            mAuth = FirebaseAuth.getInstance();
-        } catch (Exception e) {
-            mAuth = null;
-        }
+        FirebaseApp.initializeApp(this);
+        mAuth = FirebaseAuth.getInstance();
 
         edtName = findViewById(R.id.edt_name);
         edtEmail = findViewById(R.id.edt_email);
@@ -56,11 +54,13 @@ public class SignUpActivity extends AppCompatActivity {
                                                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                                                 finish();
                                             } else {
-                                                Toast.makeText(SignUpActivity.this, "Failed to save user", Toast.LENGTH_SHORT).show();
-                                            }
+                                            String error = task1.getException() != null ? task1.getException().getMessage() : "Failed to save user";
+                                                Toast.makeText(SignUpActivity.this, error, Toast.LENGTH_SHORT).show();
+                                             }
                                         });
                             } else {
-                                Toast.makeText(SignUpActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
+                            String error = task.getException() != null ? task.getException().getMessage() : "Sign Up Failed";
+                                Toast.makeText(SignUpActivity.this, error, Toast.LENGTH_SHORT).show();
                             }
                         });
             } catch (Exception e) {
