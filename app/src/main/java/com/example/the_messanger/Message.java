@@ -5,6 +5,8 @@ public class Message {
     private String senderId;
     private String message;
     private long timestamp;
+    private String replyToId;
+    private String replyToText;
 
     public Message() {}
 
@@ -13,6 +15,15 @@ public class Message {
         this.senderId = senderId;
         this.message = message;
         this.timestamp = timestamp;
+    }
+
+    public Message(String messageId, String senderId, String message, long timestamp, String replyToId, String replyToText) {
+        this.messageId = messageId;
+        this.senderId = senderId;
+        this.message = message;
+        this.timestamp = timestamp;
+        this.replyToId = replyToId;
+        this.replyToText = replyToText;
     }
 
     public String getMessageId() {
@@ -45,5 +56,21 @@ public class Message {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getReplyToId() {
+        return replyToId;
+    }
+
+    public void setReplyToId(String replyToId) {
+        this.replyToId = replyToId;
+    }
+
+    public String getReplyToText() {
+        return replyToText;
+    }
+
+    public void setReplyToText(String replyToText) {
+        this.replyToText = replyToText;
     }
 }

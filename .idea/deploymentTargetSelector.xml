@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-11-20T17:13:06.819501800Z">
+        <DropdownSelection timestamp="2025-11-20T20:14:15.987561Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\jihed\.android\avd\talifoun.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=104873736P000578" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -15,7 +15,12 @@
           <targets>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\jihed\.android\avd\talifoun.avd" />
+                <DeviceId pluginId="PhysicalDevice" identifier="serial=w86dlbuoijrww8gq" />
+              </handle>
+            </Target>
+            <Target type="DEFAULT_BOOT">
+              <handle>
+                <DeviceId pluginId="PhysicalDevice" identifier="serial=104873736P000578" />
               </handle>
             </Target>
           </targets>

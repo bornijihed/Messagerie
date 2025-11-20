@@ -3,10 +3,40 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
+    <LinearLayout
+    android:id="@+id/reply_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bubble_reply"
+        android:padding="8dp"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/txt_reply_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reply to:"
+            android:textColor="#BBBBBB"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txt_reply_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/txt_receive_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/reply_layout"
         android:background="@drawable/bubble_received"
         android:textColor="@color/on_surface"
         android:padding="10dp"

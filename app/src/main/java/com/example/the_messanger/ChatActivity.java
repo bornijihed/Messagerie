@@ -1,8 +1,11 @@
 package com.example.the_messanger;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements MessageAdapter.OnReplyListener {
     RecyclerView chatRecyclerView;
     EditText messageBox;
     ImageView sendButton;
@@ -25,6 +28,10 @@ public class ChatActivity extends AppCompatActivity {
     List<Message> messageList;
     String receiverUid;
     Toolbar toolbar;
+    LinearLayout replyPreviewLayout;
+    TextView replyPreviewText;
+    ImageView replyCloseButton;
+    Message replyingTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +52,22 @@ public class ChatActivity extends AppCompatActivity {
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
         messageBox = findViewById(R.id.messageBox);
         sendButton = findViewById(R.id.sentButton);
+        replyPreviewLayout = findViewById(R.id.reply_preview_layout);
+        replyPreviewText = findViewById(R.id.reply_preview_text);
+        replyCloseButton = findViewById(R.id.reply_close_button);
 
         messageAdapter = new MessageAdapter(this, messageList);
+        messageAdapter.setOnReplyListener(this);
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         chatRecyclerView.setAdapter(messageAdapter);
         chatRecyclerView.setItemAnimator(new androidx.recyclerview.widget.DefaultItemAnimator());
 
         loadMessages();
+
+        replyCloseButton.setOnClickListener(v -> {
+            replyPreviewLayout.setVisibility(View.GONE);
+            replyingTo = null;
+        });
 
         sendButton.setOnClickListener(view -> {
             String messageText = messageBox.getText().toString();
@@ -59,6 +75,8 @@ public class ChatActivity extends AppCompatActivity {
 
             sendMessage(messageText);
             messageBox.setText("");
+            replyPreviewLayout.setVisibility(View.GONE);
+            replyingTo = null;
         });
     }
 
@@ -96,12 +114,28 @@ public class ChatActivity extends AppCompatActivity {
             String chatId = senderUid.compareTo(receiverUid) < 0 ? senderUid + receiverUid : receiverUid + senderUid;
 
             String messageId = FirebaseDatabase.getInstance().getReference().push().getKey();
-            Message message = new Message(messageId, senderUid, messageText, System.currentTimeMillis());
+            Message message;
+            if (replyingTo != null) {
+                message = new Message(messageId, senderUid, messageText, System.currentTimeMillis(), replyingTo.getMessageId(), replyingTo.getMessage());
+            } else {
+                message = new Message(messageId, senderUid, messageText, System.currentTimeMillis());
+            }
 
             FirebaseDatabase.getInstance().getReference().child("chats").child(chatId).child("messages").child(messageId).setValue(message);
         } catch (Exception e) {
             // Firebase not available
         }
+    }
+
+    @Override
+    public void onReply(Message message) {
+        replyingTo = message;
+        replyPreviewText.setText("Replying to: " + message.getMessage());
+        replyPreviewLayout.setVisibility(View.VISIBLE);
+    }
+
+    public String getReceiverUid() {
+        return receiverUid;
     }
 
     @Override
