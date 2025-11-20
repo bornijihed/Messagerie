@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.FirebaseApp;
@@ -23,12 +24,17 @@ public class ChatActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
     List<Message> messageList;
     String receiverUid;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        FirebaseApp.initializeApp(this);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_chat);
+    FirebaseApp.initializeApp(this);
+
+    toolbar = findViewById(R.id.toolbar_chat);
+    setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String name = getIntent().getStringExtra("name");
         receiverUid = getIntent().getStringExtra("uid");
@@ -95,5 +101,14 @@ public class ChatActivity extends AppCompatActivity {
         } catch (Exception e) {
             // Firebase not available
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
